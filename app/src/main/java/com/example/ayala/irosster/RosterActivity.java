@@ -11,4 +11,8 @@ public class RosterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_roster);
         int number = 0;
     }
+
+    public static int add(int x, int y){
+        return x+y;
+    }
 }
