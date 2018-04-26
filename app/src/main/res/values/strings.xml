@@ -1,3 +1,7 @@
 <resources>
+    <string name = "player_name_label">Player Name</string>
+    <string name = "player_injured_label">Injured Player</string>
+    <string name = "player_ratios_label">players win to lose ratio</string>
+    <string name = "player_name_hint">no idea</string>
     <string name="app_name">IRosster</string>
 </resources>
