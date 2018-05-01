@@ -3,5 +3,10 @@
     <string name = "player_injured_label">Injured Player</string>
     <string name = "player_ratios_label">players win to lose ratio</string>
     <string name = "player_name_hint">no idea</string>
+    <string name = "team_name_label">Team Name</string>
+    <string name = "team_ratio_label">Team win to lose ratio</string>
+    <string name = "team_conference">Team conference</string>
+    <string name = "team_city">Teams's City</string>
+    <string name = "streak">Streak</string>
     <string name="app_name">IRosster</string>
 </resources>
