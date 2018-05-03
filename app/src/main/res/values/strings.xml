@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">IRosster</string>
     <string name = "player_name_label">Player Name</string>
     <string name = "player_injured_label">Injured Player</string>
     <string name = "player_ratios_label">players win to lose ratio</string>
@@ -8,5 +9,5 @@
     <string name = "team_conference">Team conference</string>
     <string name = "team_city">Teams's City</string>
     <string name = "streak">Streak</string>
-    <string name="app_name">IRosster</string>
+
 </resources>
