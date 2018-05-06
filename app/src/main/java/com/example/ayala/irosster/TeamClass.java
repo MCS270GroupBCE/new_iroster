@@ -24,5 +24,6 @@ public class TeamClass {
         return mTeamName;
     }
 
+    public void teamName(){}
 }
 
