@@ -30,6 +30,15 @@ public class TeamListFragment extends Fragment {
 
 
     /**
+     *
+     * TeamFrament.java
+     * @Override
+     * public void onPause(){
+     *     super.onPause();
+     *     TeamLab.get(getActivity()).updateTeam(mTeam);
+     * })
+     *
+     *
      * for teamlab.java
      *
      * private Context mContext;
@@ -59,6 +68,19 @@ public class TeamListFragment extends Fragment {
      *     mDatabase.update(TeamTable.Name, Values, TeamTable.Cols.UUID + " = ?", new String[] {uuidString});
      * }
      *
+     * private Cursor queryTeams(Strings whereClause, String[] whereArgs){
+     *     Cursor cursor = mDatabase.query(
+     *     TeamTable.NAME,
+     *     null, //columns - null selects all columns
+     *     whereClause,
+     *     whereArgs,
+     *     null, // groupBy
+     *     null, // having,
+     *     null, orderBy
+     *     );
+     *     return cursor;
+     * }
+     *
      * for TeamBaseHelper.java
      *
      * @override
@@ -72,6 +94,21 @@ public class TeamListFragment extends Fragment {
      * In TeamLab.java
      *
      * }
+     *
+     *
+     * new class called TeamCursorwrapper.java
+     *
+     * public class CrimeCursorWrapper extends CursorWrapper{
+     *     public TeamCursorWrapper(CUrsor cursor){
+     *         super(cursor);
+     *     }
+     * }
+     *
+     * public Team getTeam(){
+     *     String uuidString  = getString(getColumIndex(TeamTable.Cols.UUID));
+     *     String title = getString(getColumnIndex(TeamTable.Cols.TITLE));
+     * }
+     *
      */
 
 
