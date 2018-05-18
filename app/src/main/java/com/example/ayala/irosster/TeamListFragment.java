@@ -1,5 +1,7 @@
 package com.example.ayala.irosster;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,7 +60,8 @@ public class TeamListFragment extends Fragment{
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(), mTeam.getTeamName() + " clicked!", Toast.LENGTH_SHORT).show();
+            Intent intent = TeamActivity.newIntent(getActivity(), mTeam.getId());
+            startActivity(intent);
         }
     }
 

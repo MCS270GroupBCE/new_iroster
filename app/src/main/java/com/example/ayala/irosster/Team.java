@@ -1,11 +1,13 @@
 package com.example.ayala.irosster;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Team {
 
     private UUID mId;
     private String mTeamName;
+//    private List<Player> mPlayers;
 
     public Team(){
         mId = UUID.randomUUID();
@@ -22,6 +24,10 @@ public class Team {
     public void setTeamName(String teamName){
         mTeamName = teamName;
     }
+
+//    public void addPlayer(Player player){
+//        mPlayers.add(player);
+//    }
 
 
 }
