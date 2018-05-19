@@ -7,10 +7,10 @@
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/team_name_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="@string/team_name_label"/>
+        android:textSize="20sp"/>
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"

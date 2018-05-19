@@ -25,7 +25,7 @@ public class TeamFragment extends Fragment {
 
     private RecyclerView mPlayerRecyclerView;
     private PlayerAdapter mAdapter;
-    private EditText mTeamName;
+    private TextView mTeamName;
     private Team mTeam;
 
     @Override
@@ -35,30 +35,10 @@ public class TeamFragment extends Fragment {
         mPlayerRecyclerView = (RecyclerView) view.findViewById(R.id.player_recycler_view);
         mPlayerRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        UUID teamId = (UUID) getActivity().getIntent()
-//                .getSerializableExtra(PlayerActivity.EXTRA_TEAM_ID);
-//        mTeam = TeamLab.get(getActivity()).getTeam(teamId);
-//    }
-
-//        mTeamName = (EditText) view.findViewById(R.id.team_name);
-//        mTeamName.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                mTeam.setTeamName(s.toString());
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//            }
-//        });
+        mTeamName = (TextView) view.findViewById(R.id.team_name_top);
+        UUID teamId = (UUID) getActivity().getIntent().getSerializableExtra(TeamActivity.EXTRA_TEAM_ID);
+        mTeam = TeamLab.get(getActivity()).getTeam(teamId);
+        mTeamName.setText(mTeam.getTeamName());
 
         updateUI();
 

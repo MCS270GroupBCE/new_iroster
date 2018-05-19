@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class TeamListFragment extends Fragment{
 
     private RecyclerView mTeamRecyclerView;
     private TeamAdapter mAdapter;
+    private Menu mMenu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -43,19 +45,19 @@ public class TeamListFragment extends Fragment{
 
     private class TeamHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
-        private TextView mTitleTextView;
+        private TextView mTeamNameView;
         private Team mTeam;
 
         public TeamHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_team, parent, false));
             itemView.setOnClickListener(this);
 
-            mTitleTextView = (TextView) itemView.findViewById(R.id.team_name);
+            mTeamNameView = (TextView) itemView.findViewById(R.id.team_name);
         }
 
         public void bind(Team team){
             mTeam = team;
-            mTitleTextView.setText(mTeam.getTeamName());
+            mTeamNameView.setText(mTeam.getTeamName());
         }
 
         @Override

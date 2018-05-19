@@ -7,14 +7,9 @@
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/player_name_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/player_name_label"/>
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/player_name"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:hint="@string/player_name_hint"/>
 
 </LinearLayout>
