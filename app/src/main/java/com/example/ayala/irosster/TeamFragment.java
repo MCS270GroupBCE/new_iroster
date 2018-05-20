@@ -16,17 +16,34 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 import java.util.UUID;
 
 public class TeamFragment extends Fragment {
 
-
+    private static final String ARG_TEAM_ID = "team_id";
 
     private RecyclerView mPlayerRecyclerView;
     private PlayerAdapter mAdapter;
-    private TextView mTeamName;
+    private EditText mTeamName;
     private Team mTeam;
+
+    public static TeamFragment newInstance(UUID teamId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_TEAM_ID, teamId);
+
+        TeamFragment fragment = new TeamFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        UUID teamId = (UUID) getActivity().getIntent().getSerializableExtra(TeamActivity.EXTRA_TEAM_ID);
+        mTeam = TeamLab.get(getActivity()).getTeam(teamId);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,10 +52,23 @@ public class TeamFragment extends Fragment {
         mPlayerRecyclerView = (RecyclerView) view.findViewById(R.id.player_recycler_view);
         mPlayerRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mTeamName = (TextView) view.findViewById(R.id.team_name_top);
-        UUID teamId = (UUID) getActivity().getIntent().getSerializableExtra(TeamActivity.EXTRA_TEAM_ID);
-        mTeam = TeamLab.get(getActivity()).getTeam(teamId);
+        mTeamName = (EditText) view.findViewById(R.id.team_name_edit);
         mTeamName.setText(mTeam.getTeamName());
+        mTeamName.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s, int start, int count, int after){}
+
+            @Override
+            public void onTextChanged(
+                    CharSequence s, int start, int before, int count){
+                mTeam.setTeamName(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s){
+
+            }
+        });
 
         updateUI();
 
@@ -49,8 +79,12 @@ public class TeamFragment extends Fragment {
         PlayerLab playerLab = PlayerLab.get(getActivity());
         List<Player> players = playerLab.getPlayers();
 
-        mAdapter = new PlayerAdapter(players);
-        mPlayerRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new PlayerAdapter(players);
+            mPlayerRecyclerView.setAdapter(mAdapter);
+        } else{
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private class PlayerHolder extends RecyclerView.ViewHolder implements OnClickListener {

@@ -7,7 +7,7 @@ public class Team {
 
     private UUID mId;
     private String mTeamName;
-//    private List<Player> mPlayers;
+    private List<Player> mPlayers;
 
     public Team(){
         mId = UUID.randomUUID();
@@ -25,9 +25,10 @@ public class Team {
         mTeamName = teamName;
     }
 
-//    public void addPlayer(Player player){
-//        mPlayers.add(player);
-//    }
+    public void addPlayer(Player player){
+        mPlayers.add(player);
+    }
+
 
 
 }

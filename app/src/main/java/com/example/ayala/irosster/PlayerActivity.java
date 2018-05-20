@@ -11,22 +11,22 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.UUID;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivity extends SingleFragmentActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
-
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-
-        if (fragment == null) {
-            fragment = createFragment();
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
-
-        }
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_fragment);
+//
+//        FragmentManager fm = getSupportFragmentManager();
+//        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+//
+//        if (fragment == null) {
+//            fragment = createFragment();
+//            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+//
+//        }
+//    }
 
     public static final String EXTRA_PLAYER_ID = "com.example.ayala.irosster.player_id";
 
@@ -36,6 +36,7 @@ public class PlayerActivity extends AppCompatActivity {
         return intent;
     }
 
+    @Override
     protected Fragment createFragment(){
         return new PlayerFragment();
     }

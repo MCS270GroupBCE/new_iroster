@@ -6,8 +6,15 @@
     android:orientation="vertical" >
 
     <TextView
-        style="?android:listSeparatorTextViewStyle"
         android:id="@+id/team_name_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Team Name"
+        android:textSize="18sp" />
+
+    <EditText
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/team_name_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"/>

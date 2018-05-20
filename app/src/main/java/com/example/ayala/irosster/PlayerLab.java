@@ -20,9 +20,9 @@ public class PlayerLab {
 
     private PlayerLab(Context context){
         mPlayers = new ArrayList<>();
-        for (int i = 0; i<20; i++) {
+        for (int i = 0; i < 5; i++){
             Player player = new Player();
-            player.setPlayerName("Player # " + i);
+            player.setPlayerName("Player " + i);
             mPlayers.add(player);
         }
 

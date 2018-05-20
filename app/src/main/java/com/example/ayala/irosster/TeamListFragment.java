@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -24,6 +26,12 @@ public class TeamListFragment extends Fragment{
     private Menu mMenu;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_team_list, container, false);
 
@@ -35,12 +43,41 @@ public class TeamListFragment extends Fragment{
         return view;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
+    }
+
     private void updateUI(){
         TeamLab teamLab = TeamLab.get(getActivity());
         List<Team> teams = teamLab.getTeams();
 
-        mAdapter = new TeamAdapter(teams);
-        mTeamRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new TeamAdapter(teams);
+            mTeamRecyclerView.setAdapter(mAdapter);
+        } else{
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_team_list, menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.new_team:
+                Team team = new Team();
+                TeamLab.get(getActivity()).addTeam(team);
+                Intent intent = TeamActivity.newIntent(getActivity(), team.getId());
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private class TeamHolder extends RecyclerView.ViewHolder implements OnClickListener {

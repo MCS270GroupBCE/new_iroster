@@ -20,13 +20,16 @@ public class TeamLab {
 
      private TeamLab(Context context){
          mTeams = new ArrayList<>();
-         for (int i = 0; i<100; i++) {
+         for(int i = 0; i < 5; i++){
              Team team = new Team();
-             team.setTeamName("Team # " + i);
+             team.setTeamName("Team number " + i);
              mTeams.add(team);
          }
-
      }
+
+    public void addTeam(Team t){
+        mTeams.add(t);
+    }
 
      public List<Team> getTeams(){
          return mTeams;
