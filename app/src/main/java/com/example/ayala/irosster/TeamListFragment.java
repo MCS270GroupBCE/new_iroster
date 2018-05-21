@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,6 @@ public class TeamListFragment extends Fragment{
 
     private RecyclerView mTeamRecyclerView;
     private TeamAdapter mAdapter;
-    private Menu mMenu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,8 +85,8 @@ public class TeamListFragment extends Fragment{
         private TextView mTeamNameView;
         private Team mTeam;
 
-        public TeamHolder(LayoutInflater inflater, ViewGroup parent){
-            super(inflater.inflate(R.layout.list_item_team, parent, false));
+        public TeamHolder(View itemView){
+            super(itemView);
             itemView.setOnClickListener(this);
 
             mTeamNameView = (TextView) itemView.findViewById(R.id.team_name);
@@ -95,6 +95,7 @@ public class TeamListFragment extends Fragment{
         public void bind(Team team){
             mTeam = team;
             mTeamNameView.setText(mTeam.getTeamName());
+
         }
 
         @Override
@@ -115,8 +116,8 @@ public class TeamListFragment extends Fragment{
         @Override
         public TeamHolder onCreateViewHolder(ViewGroup parent, int viewType){
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-
-            return new TeamHolder(layoutInflater, parent);
+            View view = layoutInflater.inflate(R.layout.list_item_team, parent, false);
+            return new TeamHolder(view);
         }
 
         @Override

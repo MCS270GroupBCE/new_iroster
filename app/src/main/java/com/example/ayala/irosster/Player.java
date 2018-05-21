@@ -6,7 +6,6 @@ public class Player {
 
     private UUID mId;
     private String mPlayerName;
-    private int mPlayerAge;
 
     public Player(){
         mId = UUID.randomUUID();
@@ -22,14 +21,6 @@ public class Player {
 
     public void setPlayerName(String playerName){
         mPlayerName = playerName;
-    }
-
-    public int getPlayerAge() {
-        return mPlayerAge;
-    }
-
-    public void setPlayerAge(int playerAge) {
-        mPlayerAge = playerAge;
     }
 
 }

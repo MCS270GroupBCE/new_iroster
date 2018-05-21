@@ -38,6 +38,7 @@ public class PlayerActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment(){
-        return new PlayerFragment();
+        UUID playerId = (UUID) getIntent().getSerializableExtra(EXTRA_PLAYER_ID);
+        return PlayerFragment.newInstance(playerId);
     }
 }

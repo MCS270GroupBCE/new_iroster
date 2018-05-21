@@ -25,7 +25,7 @@ public class TeamActivity extends SingleFragmentActivity {
 //        }
 //    }
 
-    public static final String EXTRA_TEAM_ID = "com.example.ayala.irosster.team_id";
+    private static final String EXTRA_TEAM_ID = "com.example.ayala.irosster.team_id";
 
     public static Intent newIntent(Context packageContext, UUID teamId){
         Intent intent = new Intent (packageContext, TeamActivity.class);

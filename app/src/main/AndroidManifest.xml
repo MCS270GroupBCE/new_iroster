@@ -19,7 +19,9 @@
             android:name=".TeamActivity"
             android:parentActivityName=".TeamListActivity">
         </activity>
-        <activity android:name=".PlayerActivity">
+        <activity
+            android:name=".PlayerActivity"
+            android:parentActivityName=".TeamListActivity" >
         </activity>
     </application>
 

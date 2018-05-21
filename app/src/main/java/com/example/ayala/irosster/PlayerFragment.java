@@ -15,19 +15,48 @@ import java.util.UUID;
 
 public class PlayerFragment extends Fragment {
 
+    private static final String ARG_PLAYER_ID = "player_id";
+
     private Player mPlayer;
-    private TextView mPlayerName;
+    private EditText mPlayerName;
+
+    public static PlayerFragment newInstance(UUID playerId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_PLAYER_ID, playerId);
+
+        PlayerFragment fragment = new PlayerFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        UUID playerId = (UUID) getArguments().getSerializable(ARG_PLAYER_ID);
+        mPlayer = PlayerLab.get(getActivity()).getPlayer(playerId);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_player, container, false);
 
-        mPlayerName = (TextView) v.findViewById(R.id.player_name_top);
-        UUID playerId = (UUID) getActivity().getIntent().getSerializableExtra(PlayerActivity.EXTRA_PLAYER_ID);
-        mPlayer = PlayerLab.get(getActivity()).getPlayer(playerId);
+        mPlayerName = (EditText) v.findViewById(R.id.player_name_edit);
         mPlayerName.setText(mPlayer.getPlayerName());
+        mPlayerName.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+                //left blank
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+                mPlayer.setPlayerName(s.toString());
+            }
 
+            @Override
+            public void afterTextChanged(Editable s){
+                //left blank
+            }
+        });
 
 
         return v;

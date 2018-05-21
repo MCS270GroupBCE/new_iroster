@@ -6,10 +6,20 @@
     android:orientation="vertical">
 
     <TextView
-        style="?android:listSeparatorTextViewStyle"
         android:id="@+id/player_name_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/player_name_label"
+        android:textSize="18sp" />
+
+    <EditText
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/player_name_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/player_name_hint"
+        android:textSize="18sp"
+        android:layout_marginBottom="10sp" />
 
 
 </LinearLayout>

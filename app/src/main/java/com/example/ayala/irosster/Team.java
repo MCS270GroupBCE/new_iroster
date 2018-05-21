@@ -1,5 +1,6 @@
 package com.example.ayala.irosster;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ public class Team {
 
     public Team(){
         mId = UUID.randomUUID();
+        mPlayers = new ArrayList<>();
     }
 
     public UUID getId(){

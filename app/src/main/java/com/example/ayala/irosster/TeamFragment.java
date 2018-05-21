@@ -1,5 +1,6 @@
 package com.example.ayala.irosster;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -24,11 +28,13 @@ import java.util.UUID;
 public class TeamFragment extends Fragment {
 
     private static final String ARG_TEAM_ID = "team_id";
+    private static final String HAS_TEAM_CHANGED = "com.example.ayala.irosster.has_team_changed";
 
     private RecyclerView mPlayerRecyclerView;
     private PlayerAdapter mAdapter;
     private EditText mTeamName;
     private Team mTeam;
+    private boolean mHasTeamChanged = false;
 
     public static TeamFragment newInstance(UUID teamId){
         Bundle args = new Bundle();
@@ -41,8 +47,16 @@ public class TeamFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        UUID teamId = (UUID) getActivity().getIntent().getSerializableExtra(TeamActivity.EXTRA_TEAM_ID);
+        UUID teamId = (UUID) getArguments().getSerializable(ARG_TEAM_ID);
         mTeam = TeamLab.get(getActivity()).getTeam(teamId);
+        setHasOptionsMenu(true);
+    }
+
+    private void returnResult() {
+        Intent data = new Intent();
+        data.putExtra(HAS_TEAM_CHANGED, mHasTeamChanged);
+        data.putExtra(ARG_TEAM_ID, mTeam.getId());
+        getActivity().setResult(Activity.RESULT_OK, data);
     }
 
     @Override
@@ -57,22 +71,30 @@ public class TeamFragment extends Fragment {
         mTeamName.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
-                    CharSequence s, int start, int count, int after){}
+                    CharSequence s, int start, int count, int after){
+
+            }
 
             @Override
-            public void onTextChanged(
-                    CharSequence s, int start, int before, int count){
+            public void onTextChanged(CharSequence s, int start, int before, int count){
                 mTeam.setTeamName(s.toString());
+                mHasTeamChanged = true;
             }
             @Override
             public void afterTextChanged(Editable s){
-
+                returnResult();
             }
         });
 
         updateUI();
 
         return view;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
     }
 
     private void updateUI() {
@@ -86,6 +108,26 @@ public class TeamFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_team, menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.new_player:
+                Player player = new Player();
+                PlayerLab.get(getActivity()).newPlayer(player);
+                Intent intent = PlayerActivity.newIntent(getActivity(), player.getId());
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     private class PlayerHolder extends RecyclerView.ViewHolder implements OnClickListener {
 

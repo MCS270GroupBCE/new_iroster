@@ -28,6 +28,10 @@ public class PlayerLab {
 
     }
 
+    public void newPlayer(Player player){
+        mPlayers.add(player);
+    }
+
     public List<Player> getPlayers(){
         return mPlayers;
     }
