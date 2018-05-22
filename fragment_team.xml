@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/team_name_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/team_name_label"
+        android:textSize="18sp" />
+
+    <EditText
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/team_name_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:inputType="textNoSuggestions"
+        android:layout_marginBottom="10sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Roster"
+        android:textSize="18sp"
+        android:layout_margin="5sp" />
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/player_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
