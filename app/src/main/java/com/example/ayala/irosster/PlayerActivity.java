@@ -13,32 +13,20 @@ import java.util.UUID;
 
 public class PlayerActivity extends SingleFragmentActivity {
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_fragment);
-//
-//        FragmentManager fm = getSupportFragmentManager();
-//        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-//
-//        if (fragment == null) {
-//            fragment = createFragment();
-//            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
-//
-//        }
-//    }
-
     public static final String EXTRA_PLAYER_ID = "com.example.ayala.irosster.player_id";
+    public static final String EXTRA_TEAM_ID = "come.example.ayala.irosster.team_id";
 
-    public static Intent newIntent(Context packageContext, UUID playerId){
+    public static Intent newIntent(Context packageContext, UUID playerId, UUID teamId){
         Intent intent = new Intent (packageContext, PlayerActivity.class);
         intent.putExtra(EXTRA_PLAYER_ID, playerId);
+        intent.putExtra(EXTRA_TEAM_ID, teamId);
         return intent;
     }
 
     @Override
     protected Fragment createFragment(){
         UUID playerId = (UUID) getIntent().getSerializableExtra(EXTRA_PLAYER_ID);
-        return PlayerFragment.newInstance(playerId);
+        UUID teamId = (UUID) getIntent().getSerializableExtra(EXTRA_TEAM_ID);
+        return PlayerFragment.newInstance(playerId, teamId);
     }
 }

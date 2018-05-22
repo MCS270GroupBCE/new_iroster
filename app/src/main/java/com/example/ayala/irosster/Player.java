@@ -6,9 +6,20 @@ public class Player {
 
     private UUID mId;
     private String mPlayerName;
+    private Team mTeam;
 
-    public Player(){
+    public Player(Team team){
         mId = UUID.randomUUID();
+        mTeam = team;
+        team.addPlayer(this);
+    }
+
+    public Team getPlayerTeam(){
+        return mTeam;
+    }
+
+    public Player getPlayer(UUID id){
+        return mTeam.getPlayer(id);
     }
 
     public UUID getId(){

@@ -1,14 +1,18 @@
 package com.example.ayala.irosster;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import com.example.ayala.irosster.PlayerLab;
 
 public class Team {
 
     private UUID mId;
     private String mTeamName;
-    private List<Player> mPlayers;
+    public List<Player> mPlayers;
+
 
     public Team(){
         mId = UUID.randomUUID();
@@ -19,6 +23,21 @@ public class Team {
         return mId;
     }
 
+    public void addPlayer(Player player){mPlayers.add(player); }
+
+    public List<Player> getPlayers(){
+        return mPlayers;
+    }
+
+    public Player getPlayer(UUID id){
+        for (Player player : mPlayers) {
+            if (player.getId().equals(id)){
+                return player;
+            }
+        }
+        return null;
+    }
+
     public String getTeamName(){
         return mTeamName;
     }
@@ -26,11 +45,5 @@ public class Team {
     public void setTeamName(String teamName){
         mTeamName = teamName;
     }
-
-    public void addPlayer(Player player){
-        mPlayers.add(player);
-    }
-
-
 
 }

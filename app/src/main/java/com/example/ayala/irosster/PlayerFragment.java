@@ -16,13 +16,15 @@ import java.util.UUID;
 public class PlayerFragment extends Fragment {
 
     private static final String ARG_PLAYER_ID = "player_id";
+    private static final String ARG_TEAM_ID = "team_id";
 
     private Player mPlayer;
     private EditText mPlayerName;
 
-    public static PlayerFragment newInstance(UUID playerId){
+    public static PlayerFragment newInstance(UUID playerId, UUID teamId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_PLAYER_ID, playerId);
+        args.putSerializable(ARG_TEAM_ID, teamId);
 
         PlayerFragment fragment = new PlayerFragment();
         fragment.setArguments(args);
@@ -32,7 +34,8 @@ public class PlayerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID playerId = (UUID) getArguments().getSerializable(ARG_PLAYER_ID);
-        mPlayer = PlayerLab.get(getActivity()).getPlayer(playerId);
+        UUID teamId = (UUID) getArguments().getSerializable(ARG_TEAM_ID);
+        mPlayer = TeamLab.get(getActivity()).getTeam(teamId).getPlayer(playerId);
     }
 
     @Override

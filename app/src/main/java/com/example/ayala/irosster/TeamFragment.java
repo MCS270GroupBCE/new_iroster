@@ -29,7 +29,6 @@ public class TeamFragment extends Fragment {
 
     private static final String ARG_TEAM_ID = "team_id";
     private static final String HAS_TEAM_CHANGED = "com.example.ayala.irosster.has_team_changed";
-
     private RecyclerView mPlayerRecyclerView;
     private PlayerAdapter mAdapter;
     private EditText mTeamName;
@@ -98,8 +97,7 @@ public class TeamFragment extends Fragment {
     }
 
     private void updateUI() {
-        PlayerLab playerLab = PlayerLab.get(getActivity());
-        List<Player> players = playerLab.getPlayers();
+        List<Player> players = mTeam.getPlayers();
 
         if (mAdapter == null) {
             mAdapter = new PlayerAdapter(players);
@@ -118,9 +116,8 @@ public class TeamFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.new_player:
-                Player player = new Player();
-                PlayerLab.get(getActivity()).newPlayer(player);
-                Intent intent = PlayerActivity.newIntent(getActivity(), player.getId());
+                Player player = new Player(mTeam);
+                Intent intent = PlayerActivity.newIntent(getActivity(), player.getId(), mTeam.getId());
                 startActivity(intent);
                 return true;
             default:
@@ -148,7 +145,7 @@ public class TeamFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent intent = PlayerActivity.newIntent(getActivity(), mPlayer.getId());
+            Intent intent = PlayerActivity.newIntent(getActivity(), mPlayer.getId(), mTeam.getId());
             startActivity(intent);
         }
     }
@@ -170,13 +167,13 @@ public class TeamFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(PlayerHolder holder, int position) {
-            Player player = mPlayers.get(position);
+            Player player = mTeam.mPlayers.get(position);
             holder.bind(player);
         }
 
         @Override
         public int getItemCount() {
-            return mPlayers.size();
+            return mTeam.mPlayers.size();
         }
     }
 }

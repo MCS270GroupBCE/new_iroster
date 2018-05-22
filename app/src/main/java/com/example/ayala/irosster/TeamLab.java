@@ -20,18 +20,15 @@ public class TeamLab {
 
      private TeamLab(Context context){
          mTeams = new ArrayList<>();
-         for(int i = 0; i < 5; i++){
-             Team team = new Team();
-             team.setTeamName("Team number " + i);
-             mTeams.add(team);
-         }
      }
 
     public void addTeam(Team t){
          mTeams.add(t);
-    }
+     }
 
-     public List<Team> getTeams(){
+    public void deleteTeam(Team t) {mTeams.remove(t); }
+
+    public List<Team> getTeams(){
          return mTeams;
      }
 
@@ -44,5 +41,29 @@ public class TeamLab {
          return null;
      }
 
+//    public void addPlayer(Player player){
+//        mPlayers.add(player);
+//    }
+//
+//    public void deletePlayer(Player player) {mPlayers.remove(player);}
+//
+//    public List<Player> getPlayers(){
+//        return mPlayers;
+//    }
+//
+//    public Player getPlayer(UUID id){
+//        for (Player player : mPlayers) {
+//            if (player.getId().equals(id)){
+//                return player;
+//            }
+//        }
+//        return null;
+//    }
+
 
 }
+
+
+
+
+

@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 public class PlayerLab {
-    private static PlayerLab sPlayerLab;
 
     private List<Player> mPlayers;
+
+    private static PlayerLab sPlayerLab;
 
     public static PlayerLab get(Context context){
         if (sPlayerLab == null){
@@ -20,17 +21,13 @@ public class PlayerLab {
 
     private PlayerLab(Context context){
         mPlayers = new ArrayList<>();
-        for (int i = 0; i < 5; i++){
-            Player player = new Player();
-            player.setPlayerName("Player " + i);
-            mPlayers.add(player);
-        }
-
     }
 
-    public void newPlayer(Player player){
+    public void addPlayer(Player player){
         mPlayers.add(player);
     }
+
+    public void deletePlayer(Player player) {mPlayers.remove(player);}
 
     public List<Player> getPlayers(){
         return mPlayers;
