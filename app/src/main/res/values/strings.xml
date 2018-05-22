@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">IRoster</string>
     <string name="team_name_label">Team Name</string>
+    <string name="team_name_hint">Enter a Team Name</string>
     <string name="player_name_hint">Enter a Player Name</string>
     <string name="player_name_label">Player Name</string>
     <string name="new_team">New Team</string>
